@@ -1,71 +1,102 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# アプリケーション名
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+取引先掛取引与信管理システム
 
-## About Laravel
+# 概要
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+取引先の資本金、業績、過去の取引状況の登録から、それらのデータを元に算出した与信額、月次の返済処理までを管理できるシステムです。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# URL
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+http://credit-management-29255.herokuapp.com/
 
-## Learning Laravel
+# テスト用アカウント
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+E-Mail Address : a@a  
+Password : guest123
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+# 利用方法
 
-## Laravel Sponsors
+ログイン後、「新規取引先登録ボタン」より取引先情報を登録。  
+取引先一覧画面にて、登録されていることを確認。「掛取引登録ボタン」より取引金額と、返済期間月数を登録。   
+ログイン後、「新規取引先登録ボタン」より取引先情報を登録。取引先一覧画面にて、登録されていることを確認。   
+掛取引一覧
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
 
-## Contributing
+## ユーザー管理機能
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+# テーブル設計
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ER図
 
-## License
+https://lucid.app/lucidchart/230a7a1c-cbee-42e8-a56e-2f714186fc8b/view?page=0_0#?folder_id=home&browser=icon
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## users テーブル 
+
+| Column           | Type   | Options     |
+| ---------------- | ------ | ----------- |
+| name             | string | null: false |
+| email            | string | null: false |
+| password         | string | null: false |
+
+
+### Association
+
+- has_many :clients
+- has_many :trades
+
+## clients テーブル
+
+| Column                     | Type       | Options     |
+| ---------------------------| ---------- | ----------- |
+| client_name                | string     | null: false |
+| capital_amount             | integer    | null: false |
+| annual_sales_1             | integer    | null: false |
+| annual_sales_2             | integer    | null: false |
+| annual_sales_3             | integer    | null: false |
+| credit_score               | integer    | null: false |
+| credit_line                | integer    | null: false |
+| account_receivable_balance | integer    | null: false |
+
+
+### Association
+
+- belongs_to :user
+- has_many :trades
+
+## trades テーブル
+
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| transaction_amount  | integer    | null: false                    |
+| transaction_balance | integer    | null: false                    |
+| months_of_term      | integer    | null: false                    |
+| client_id           | references | null: false, foreign_key: true |                    |
+| trade_score         | integer    | null: false                    |
+
+### Association
+
+- belongs_to :user
+- belongs_to :client
+- has_many :repayments
+
+## repayments テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| payment_month | integer    | null: false                    |
+| trade_id      | references | null: false, foreign_key: true |
+| amount        | integer    | null: false                    |
+| delay_flag    | integer    | null: false                    |
+| credit_minus  | integer    | null: false                    |
+
+### Association
+
+- belongs_to :trade
+
+# ローカルでの動作方法
+
+php 7.3.22
+Laravel 4.1.1
