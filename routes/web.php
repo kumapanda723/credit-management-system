@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('/');
+    return view('welcome');
 });
 
 Route::get('index_clients', 'ClientsController@index_clients');
