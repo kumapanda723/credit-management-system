@@ -40,7 +40,7 @@ http://credit-management-29255.herokuapp.com/
 
 # テスト用アカウント
 
-E-Mail Address : guest@example.com 
+E-Mail Address : guest@example.com  
 Password : guest123
 
 # 利用方法
