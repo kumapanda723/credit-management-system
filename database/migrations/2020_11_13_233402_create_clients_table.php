@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->integer('annual_sales_1');//売上高_前期
             $table->integer('annual_sales_2');//売上高_前々期
             $table->integer('annual_sales_3');//売上高_前々々期
-            $table->integer('credit_score');//信用スコア
+            $table->double('credit_score', 5, 2);//信用スコア
             $table->double('credit_line', 15, 2);//貸付枠
             $table->integer('account_receivable_balance');//未回収掛売残高
             $table->timestamps();//作成日時、更新日時
