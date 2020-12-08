@@ -44,8 +44,16 @@
                 text-align: center;
             }
 
+            @media screen and (min-width: 670px) {
+
             .title {
-                font-size: 50px;
+                font-size: 5vw;
+                width: 100vw;
+                margin: 30px 0;
+            }
+
+            .links {
+                margin: 30px 0;
             }
 
             .links > a {
@@ -58,7 +66,29 @@
                 text-transform: uppercase;
             }
 
-            .links > h1 {
+            .detail > span {
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            }
+            
+            @media screen and (max-width: 670px) { 
+
+            .title {
+                font-size: 23px;
+                width: 100vw;
+                margin-bottom: 40px;
+            }
+
+            .links {
+                margin: 40px 0;
+            }
+
+            .links > a {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 16px;
@@ -66,21 +96,28 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
             }
+
+            .detail{ 
+                text-align: center;
+                margin-bottom: 20px;
+                }
             
-            h1 > span {
-                color: #636b6f;
-                font-size: 15px;
+            .detail > span {
+                font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-                text-decoration:underline #636b6f;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
+            .text {display: inline-block}
+            
             }
+
         </style>
     </head>
     <body>
@@ -100,7 +137,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title">
                   取引先掛取引与信管理システム
                 </div>
 
@@ -109,8 +146,16 @@
                     <a href="/index_clients">取引先一覧</a>
                     <a href="/index_trades">掛取引一覧</a>
                     <a href="/index_repayments">月次返済処理一覧</a>
-                    <h1>※<span>取引先情報の編集</span>・<span>掛取引登録</span>は取引先一覧から実行できます。</h1>
-                    <h1>※<span>掛取引の編集</span>・<span>月次返済処理登録</span>は掛取引一覧から実行できます。</h1>
+                </div>
+                <div class="annotation">
+                  <div class="detail">
+                    <span class="text">※取引先情報の編集・掛取引登録</span>
+                    <span class="text">は取引先一覧から実行できます。</span>
+                  </div>
+                  <div class="detail">
+                    <span class="text">※掛取引の編集・月次返済処理登録</span>
+                    <span class="text">は掛取引一覧から実行できます。</span>
+                  </div>
                 </div>
             </div>
         </div>
